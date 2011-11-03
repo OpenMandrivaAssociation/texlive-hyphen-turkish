@@ -1,3 +1,9 @@
+# revision 23085
+# category TLCore
+# catalog-ctan /language/hyphenation/tkhyph.tex
+# catalog-date 2011-02-23 08:51:21 +0100
+# catalog-license other-free
+# catalog-version undef
 Name:		texlive-hyphen-turkish
 Version:	20110223
 Release:	1
@@ -52,6 +58,7 @@ bit engines.
 %_texmf_language_dat_d/hyphen-turkish
 %_texmf_language_def_d/hyphen-turkish
 %_texmf_language_lua_d/hyphen-turkish
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -60,6 +67,8 @@ bit engines.
 %build
 
 %install
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-turkish <<EOF
 %% from hyphen-turkish:
