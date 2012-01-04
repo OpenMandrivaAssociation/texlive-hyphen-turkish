@@ -50,12 +50,12 @@ bit engines.
 %install
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-turkish <<EOF
-%% from hyphen-turkish:
+\%\% from hyphen-turkish:
 turkish loadhyph-tr.tex
 EOF
 mkdir -p %{buildroot}%{_texmf_language_def_d}
 cat > %{buildroot}%{_texmf_language_def_d}/hyphen-turkish <<EOF
-%% from hyphen-turkish:
+\%\% from hyphen-turkish:
 \addlanguage{turkish}{loadhyph-tr.tex}{}{2}{2}
 EOF
 mkdir -p %{buildroot}%{_texmf_language_lua_d}
