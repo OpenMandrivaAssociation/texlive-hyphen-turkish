@@ -6,7 +6,7 @@
 # catalog-version undef
 Name:		texlive-hyphen-turkish
 Version:	20180303
-Release:	1
+Release:	2
 Summary:	Turkish hyphenation patterns
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/language/hyphenation/tkhyph.tex
@@ -37,6 +37,8 @@ bit engines.
 
 #-----------------------------------------------------------------------
 %files
+%{_texmfdistdir}/tex/generic/hyph-utf8/loadhyph/*
+%{_texmfdistdir}/tex/generic/hyph-utf8/patterns/*/*
 %_texmf_language_dat_d/hyphen-turkish
 %_texmf_language_def_d/hyphen-turkish
 %_texmf_language_lua_d/hyphen-turkish
@@ -48,6 +50,9 @@ bit engines.
 %build
 
 %install
+mkdir -p %{buildroot}%{_texmfdistdir}
+cp -fpar tex %{buildroot}%{_texmfdistdir}
+
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-turkish <<EOF
 \%% from hyphen-turkish:
