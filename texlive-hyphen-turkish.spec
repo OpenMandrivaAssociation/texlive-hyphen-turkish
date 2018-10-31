@@ -6,7 +6,7 @@
 # catalog-version undef
 Name:		texlive-hyphen-turkish
 Version:	20180303
-Release:	2
+Release:	3
 Summary:	Turkish hyphenation patterns
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/language/hyphenation/tkhyph.tex
