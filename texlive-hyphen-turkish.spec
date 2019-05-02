@@ -5,7 +5,7 @@
 # catalog-license other-free
 # catalog-version undef
 Name:		texlive-hyphen-turkish
-Version:	20181105
+Version:	20190406
 Release:	1
 Summary:	Turkish hyphenation patterns
 Group:		Publishing
