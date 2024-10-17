@@ -3,7 +3,7 @@ Version:	58652
 Release:	2
 Summary:	Turkish hyphenation patterns
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/language/hyphenation/tkhyph.tex
+URL:		https://www.ctan.org/tex-archive/language/hyphenation/tkhyph.tex
 License:	OTHER-FREE
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/hyphen-turkish.r%{version}.tar.xz
 BuildArch:	noarch
