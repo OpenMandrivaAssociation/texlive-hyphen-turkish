@@ -1,73 +1,27 @@
-Name:		texlive-hyphen-turkish
-Version:	58652
-Release:	2
-Summary:	Turkish hyphenation patterns
+%global tl_name hyphen-turkish
+%global tl_revision 78069
+
+Name:		texlive-%{tl_name}
+Version:	%{tl_revision}
+Release:	1
+Summary:	Turkish hyphenation patterns.
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/language/hyphenation/tkhyph.tex
-License:	OTHER-FREE
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/hyphen-turkish.r%{version}.tar.xz
+License:	other-free
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/hyphen-turkish.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/hyphen-turkish.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-hyphen-base
-Requires:	texlive-hyph-utf8
+BuildSystem:	texlive
+Requires:	texlive(hyph-utf8)
+Requires:	texlive(hyphen-base)
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-Hyphenation patterns for Turkish in T1/EC and UTF-8 encodings.
-The patterns for Turkish were first produced for the Ottoman
-Texts Project in 1987 and were suitable for both Modern Turkish
-and Ottoman Turkish in Latin script, however the required
-character set didn't fit into EC encoding, so support for
-Ottoman Turkish had to be dropped to keep compatibility with 8-
-bit engines.
+Hyphenation patterns for Turkish in T1/EC and UTF-8 encodings. Auto-
+generated from a script included in the distribution. The patterns for
+Turkish were first produced for the Ottoman Texts Project in 1987 and
+were suitable for both Modern Turkish and Ottoman Turkish in Latin
+script, however the required character set didn't fit into EC encoding,
+so support for Ottoman Turkish had to be dropped to keep compatibility
+with 8-bit engines.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/generic/hyph-utf8/loadhyph/*
-%{_texmfdistdir}/tex/generic/hyph-utf8/patterns/*/*
-%_texmf_language_dat_d/hyphen-turkish
-%_texmf_language_def_d/hyphen-turkish
-%_texmf_language_lua_d/hyphen-turkish
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex %{buildroot}%{_texmfdistdir}
-
-mkdir -p %{buildroot}%{_texmf_language_dat_d}
-cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-turkish <<EOF
-\%% from hyphen-turkish:
-turkish loadhyph-tr.tex
-EOF
-perl -pi -e 's|\\%%|%%|;' %{buildroot}%{_texmf_language_dat_d}/hyphen-turkish
-mkdir -p %{buildroot}%{_texmf_language_def_d}
-cat > %{buildroot}%{_texmf_language_def_d}/hyphen-turkish <<EOF
-\%% from hyphen-turkish:
-\addlanguage{turkish}{loadhyph-tr.tex}{}{2}{2}
-EOF
-perl -pi -e 's|\\%%|%%|;' %{buildroot}%{_texmf_language_def_d}/hyphen-turkish
-mkdir -p %{buildroot}%{_texmf_language_lua_d}
-cat > %{buildroot}%{_texmf_language_lua_d}/hyphen-turkish <<EOF
--- from hyphen-turkish:
-	['turkish'] = {
-		loader = 'loadhyph-tr.tex',
-		lefthyphenmin = 2,
-		righthyphenmin = 2,
-		synonyms = {  },
-		patterns = 'hyph-tr.pat.txt',
-		hyphenation = '',
-	},
-EOF
